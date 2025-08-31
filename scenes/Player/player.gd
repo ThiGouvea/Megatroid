@@ -1,8 +1,8 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $animations
 
 func _physics_process(delta: float) -> void:
 	if Auto.vivo:
