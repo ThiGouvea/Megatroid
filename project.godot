@@ -15,10 +15,6 @@ run/main_scene="uid://cnixak46eh5rl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://scenes/icon.svg"
 
-[autoload]
-
-Auto="*res://scripts/auto.gd"
-
 [input]
 
 jump={
