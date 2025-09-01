@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=25 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cwfcbcc3erg0q" path="res://assets/sprites/Iddlee.png" id="2_qlg0r"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cpgbxa1y4k7nb" path="res://scenes/Player/jump.gd" id="8_dl1wr"]
 [ext_resource type="Script" uid="uid://c4th0ak476f12" path="res://scenes/Player/move.gd" id="8_wwtew"]
 [ext_resource type="Script" uid="uid://caascye0hlrn2" path="res://scenes/Player/fall.gd" id="10_uxo23"]
+[ext_resource type="Script" uid="uid://bjmeys0blx80r" path="res://scenes/Player/morto.gd" id="11_n7rn1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uxo23"]
 atlas = ExtResource("3_dqkch")
@@ -162,3 +163,6 @@ script = ExtResource("10_uxo23")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "fall"
+
+[node name="morto" type="Node" parent="state_machine"]
+script = ExtResource("11_n7rn1")

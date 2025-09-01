@@ -18,8 +18,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
-
-
 #class_name Player extends CharacterBody2D
 #
 #const SPEED = 100.0
