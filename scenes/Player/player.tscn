@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=29 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
 [ext_resource type="Texture2D" uid="uid://cwfcbcc3erg0q" path="res://assets/sprites/Iddlee.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bsqg80otn6pix" path="res://assets/sprites/Jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bbvfhoqe4nxyv" path="res://assets/sprites/morte.png" id="4_tuyoq"]
@@ -11,6 +12,11 @@
 [ext_resource type="Script" uid="uid://c4th0ak476f12" path="res://scenes/Player/move.gd" id="8_wwtew"]
 [ext_resource type="Script" uid="uid://caascye0hlrn2" path="res://scenes/Player/fall.gd" id="10_uxo23"]
 [ext_resource type="Script" uid="uid://bjmeys0blx80r" path="res://scenes/Player/morto.gd" id="11_n7rn1"]
+[ext_resource type="Script" uid="uid://bl36r8refocrr" path="res://scenes/Player/damaged.gd" id="12_7tfl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
+atlas = ExtResource("2_jxtnq")
+region = Rect2(0, 0, 26, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uxo23"]
 atlas = ExtResource("3_dqkch")
@@ -58,6 +64,14 @@ region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_186t8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6q27")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uxo23")
@@ -118,7 +132,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(12, 21)
+size = Vector2(12, 21.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxtnq"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -130,12 +146,13 @@ sprite_frames = SubResource("SpriteFrames_186t8")
 animation = &"idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10.5)
+position = Vector2(0, -10.75)
 shape = SubResource("RectangleShape2D_qlg0r")
 
-[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "damaged")]
 script = ExtResource("6_hvfru")
 starting_state = NodePath("idle")
+damaged = NodePath("damaged")
 
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
 script = ExtResource("7_a06cl")
@@ -164,5 +181,25 @@ idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "fall"
 
-[node name="morto" type="Node" parent="state_machine"]
+[node name="dead" type="Node" parent="state_machine"]
 script = ExtResource("11_n7rn1")
+
+[node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+script = ExtResource("12_7tfl1")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+
+[node name="Timer" type="Timer" parent="state_machine/damaged"]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="state_machine/damaged"]
+sprite_frames = SubResource("SpriteFrames_jxtnq")
+
+[node name="invulneravel" type="Timer" parent="state_machine/damaged"]
+one_shot = true
+
+[connection signal="quantDano" from="." to="state_machine" method="_on_player_quant_dano"]
+[connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
+[connection signal="timeout" from="state_machine/damaged/invulneravel" to="state_machine/damaged" method="_on_invulneravel_timeout"]

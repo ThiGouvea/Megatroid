@@ -15,6 +15,12 @@ run/main_scene="uid://cnixak46eh5rl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://scenes/icon.svg"
 
+[importer_defaults]
+
+animation_library={
+&"animation/fps": 30.0
+}
+
 [input]
 
 jump={

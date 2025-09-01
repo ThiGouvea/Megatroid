@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal quantDano
+
 @onready var animations = $animations
 @onready var state_machine = $state_machine
 
@@ -17,7 +19,9 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
-
+	
+func _on_damage_zone_damaged() -> void:
+	emit_signal("quantDano")
 #class_name Player extends CharacterBody2D
 #
 #const SPEED = 100.0
