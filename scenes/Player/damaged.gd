@@ -1,22 +1,21 @@
 extends State
 
-@onready var invulneravelt: Timer = $invulneravel
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
 @onready var timer: Timer = $Timer
 var outtime = false
 var invulneravel = false
+var dano = 0
 
 func enter() -> void:
 	super()
 	outtime = false
-	if !invulneravel:
-		timer.start()
-		invulneravel = true
-		parent.animations.play("damaged")
-		Engine.time_scale = 0.5
-		invulneravelt.start()
+	timer.start()
+	invulneravel = true
+	Engine.time_scale = 0.5
+	dano += 1
+	print(dano)
 	
 func process_physics(delta: float) -> State:
 	if outtime:
@@ -26,14 +25,10 @@ func process_physics(delta: float) -> State:
 			return move_state
 		else:
 			return idle_state
-		parent.move_and_slide()
+	parent.move_and_slide()
 	return null
 
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1
 	outtime = true
-
-func _on_invulneravel_timeout() -> void:
-	invulneravel = false
-	print('vulneravel')

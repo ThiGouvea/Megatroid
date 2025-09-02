@@ -189,6 +189,7 @@ script = ExtResource("12_7tfl1")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+animation_name = "damaged"
 
 [node name="Timer" type="Timer" parent="state_machine/damaged"]
 wait_time = 0.1
@@ -197,9 +198,5 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="state_machine/damaged"]
 sprite_frames = SubResource("SpriteFrames_jxtnq")
 
-[node name="invulneravel" type="Timer" parent="state_machine/damaged"]
-one_shot = true
-
 [connection signal="quantDano" from="." to="state_machine" method="_on_player_quant_dano"]
 [connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
-[connection signal="timeout" from="state_machine/damaged/invulneravel" to="state_machine/damaged" method="_on_invulneravel_timeout"]
