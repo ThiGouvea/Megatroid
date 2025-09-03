@@ -1,8 +1,10 @@
-extends State
+class_name idle extends State
 
 @export var fall_state: State
 @export var jump_state: State
 @export var move_state: State
+@export var idle_shooting: State
+
 
 func enter() -> void:
 	super()
@@ -16,6 +18,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if parent.shooting:
+		parent.animations.play('idleshooting')
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	

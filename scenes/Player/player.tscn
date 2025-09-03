@@ -1,15 +1,18 @@
-[gd_scene load_steps=32 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=40 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
 [ext_resource type="Texture2D" uid="uid://cwfcbcc3erg0q" path="res://assets/sprites/Iddlee.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bsqg80otn6pix" path="res://assets/sprites/Jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bbvfhoqe4nxyv" path="res://assets/sprites/morte.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://b4cfspqsix6mn" path="res://assets/sprites/jumpshoting.png" id="4_x8khf"]
+[ext_resource type="Texture2D" uid="uid://db2f1x3ciudtm" path="res://assets/sprites/idleshoting.png" id="5_tayva"]
 [ext_resource type="Texture2D" uid="uid://dnykfjyumvku8" path="res://assets/sprites/Run.png" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://bptp1oxqwxiq4" path="res://scenes/Player/state_machine.gd" id="6_hvfru"]
 [ext_resource type="Script" uid="uid://b64odbad0lt4g" path="res://scenes/Player/idle.gd" id="7_a06cl"]
 [ext_resource type="Texture2D" uid="uid://uaxpfmkolfvn" path="res://assets/sprites/slide.png" id="7_wyey8"]
 [ext_resource type="Script" uid="uid://cpgbxa1y4k7nb" path="res://scenes/Player/jump.gd" id="8_dl1wr"]
+[ext_resource type="Texture2D" uid="uid://biaokadi6eydg" path="res://assets/sprites/moveshoting.png" id="8_tayva"]
 [ext_resource type="Script" uid="uid://c4th0ak476f12" path="res://scenes/Player/move.gd" id="8_wwtew"]
 [ext_resource type="Script" uid="uid://caascye0hlrn2" path="res://scenes/Player/fall.gd" id="10_uxo23"]
 [ext_resource type="Script" uid="uid://bjmeys0blx80r" path="res://scenes/Player/morto.gd" id="11_n7rn1"]
@@ -24,6 +27,10 @@ region = Rect2(0, 0, 26, 28)
 atlas = ExtResource("3_dqkch")
 region = Rect2(0, 0, 26, 30)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o05ft"]
+atlas = ExtResource("4_x8khf")
+region = Rect2(0, 0, 29, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8khf"]
 atlas = ExtResource("2_qlg0r")
 region = Rect2(0, 0, 24, 30)
@@ -31,6 +38,10 @@ region = Rect2(0, 0, 24, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_aciub"]
 atlas = ExtResource("2_qlg0r")
 region = Rect2(24, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an8q1"]
+atlas = ExtResource("5_tayva")
+region = Rect2(0, 0, 31, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyey8"]
 atlas = ExtResource("3_dqkch")
@@ -64,6 +75,18 @@ region = Rect2(24, 0, 24, 30)
 atlas = ExtResource("5_tuyoq")
 region = Rect2(48, 0, 24, 30)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxkm2"]
+atlas = ExtResource("8_tayva")
+region = Rect2(0, 0, 29, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18ciy"]
+atlas = ExtResource("8_tayva")
+region = Rect2(29, 0, 29, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg2hl"]
+atlas = ExtResource("8_tayva")
+region = Rect2(58, 0, 29, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bwnf"]
 atlas = ExtResource("7_wyey8")
 region = Rect2(0, 0, 27, 21)
@@ -87,6 +110,14 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o05ft")
+}],
+"loop": true,
+"name": &"falljumpshooting",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_x8khf")
 }, {
@@ -96,6 +127,14 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an8q1")
+}],
+"loop": true,
+"name": &"idleshooting",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -138,6 +177,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hxkm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18ciy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cg2hl")
+}],
+"loop": true,
+"name": &"moveshooting",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1bwnf")
 }],
 "loop": true,
@@ -157,7 +210,7 @@ script = ExtResource("1_g2els")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idle"
+animation = &"idleshooting"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.75)
@@ -220,5 +273,10 @@ idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "slide"
 
+[node name="Timer" type="Timer" parent="state_machine/slide"]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="quantDano" from="." to="state_machine" method="_on_player_quant_dano"]
 [connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
+[connection signal="timeout" from="state_machine/slide/Timer" to="state_machine/slide" method="_on_timer_timeout"]

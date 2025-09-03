@@ -1,3 +1,4 @@
+class_name jump
 extends State
 
 @export var fall_state: State
@@ -11,6 +12,8 @@ func enter() -> void:
 	parent.velocity.y = -jump_force
 
 func process_physics(delta: float) -> State:
+	if parent.shooting:
+		parent.animations.play('falljumpshooting')
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:
