@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cnixak46eh5rl"]
+[gd_scene load_steps=21 format=4 uid="uid://cnixak46eh5rl"]
 
 [ext_resource type="PackedScene" uid="uid://dpx03g1xtlg1q" path="res://scenes/Player/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dbumpvexc01ax" path="res://scenes/game.gd" id="1_yqjtg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d8m16ekmolcw" path="res://scenes/platform.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://b6cs61lfjjw4b" path="res://scenes/coin.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://bnujpb2ncrnnw" path="res://scenes/kill_zone.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://cy8q145tk8qgh" path="res://scenes/greenenemy.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5sy4"]
 texture = ExtResource("3_u5sy4")
@@ -177,7 +178,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_u5sy4")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
-size = Vector2(79.7696, 14.3923)
+size = Vector2(15.8848, 15.1961)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtaks"]
 texture = ExtResource("4_0tnpc")
@@ -359,6 +360,18 @@ collision_mask = 3
 position = Vector2(0, -48)
 shape = SubResource("WorldBoundaryShape2D_0tnpc")
 
+[node name="Node2D" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(-200, 16)
+
+[node name="damage_zone2" parent="Node2D" instance=ExtResource("2_0tnpc")]
+position = Vector2(200, -16)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/damage_zone2"]
+position = Vector2(-199.942, 7.59807)
+shape = SubResource("RectangleShape2D_0tnpc")
+
 [connection signal="damaged" from="damage_zone" to="Player/Player" method="_on_damage_zone_damaged"]
 [connection signal="MaisMoeda" from="Coins/Coin" to="." method="_on_coin_mais_moeda"]
 [connection signal="MaisMoeda" from="Coins/Coin2" to="." method="_on_coin_mais_moeda"]
+[connection signal="damaged" from="Node2D/damage_zone2" to="Player/Player" method="_on_damage_zone_damaged"]
