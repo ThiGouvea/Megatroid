@@ -10,6 +10,7 @@ var justslided = false
 
 func enter() -> void:
 	super()
+	parent.shooting = false
 	if !justslided:
 		slide_force = 120
 	

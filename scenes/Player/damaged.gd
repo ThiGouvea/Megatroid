@@ -13,7 +13,6 @@ func enter() -> void:
 	outtime = false
 	timer.start()
 	invulneravel = true
-	Engine.time_scale = 0.5
 	dano += 1
 	print(dano)
 	
@@ -30,5 +29,4 @@ func process_physics(delta: float) -> State:
 
 
 func _on_timer_timeout() -> void:
-	Engine.time_scale = 1
 	outtime = true
