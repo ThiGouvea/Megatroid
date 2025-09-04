@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy8q145tk8qgh"]
+[gd_scene load_steps=10 format=3 uid="uid://cy8q145tk8qgh"]
 
 [ext_resource type="Texture2D" uid="uid://dwymgk0ygl3yc" path="res://assets/sprites/slime_green.png" id="1_jwlyq"]
 [ext_resource type="Script" uid="uid://c5gc6kp2r1bt3" path="res://scripts/greenenemy.gd" id="1_yiqwf"]
+[ext_resource type="PackedScene" uid="uid://buoqh1uunh3rc" path="res://scenes/damage_zone.tscn" id="3_yiqwf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmmvg"]
 atlas = ExtResource("1_jwlyq")
@@ -39,6 +40,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmmvg"]
+size = Vector2(10, 12)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yiqwf")
 
@@ -58,8 +62,14 @@ target_position = Vector2(-9, 0)
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -5)
-target_position = Vector2(-11, 10)
+target_position = Vector2(-9, 9)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
 position = Vector2(0, -5)
-target_position = Vector2(10, 9)
+target_position = Vector2(9, 9)
+
+[node name="damage_zone" parent="." instance=ExtResource("3_yiqwf")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_pmmvg")

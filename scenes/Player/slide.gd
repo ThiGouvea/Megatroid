@@ -3,6 +3,7 @@ extends State
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
+@export var jump_state: State
 @onready var timer: Timer = $Timer
 
 var slide_force
@@ -12,7 +13,7 @@ func enter() -> void:
 	super()
 	parent.shooting = false
 	if !justslided:
-		slide_force = 120
+		slide_force = 150
 	
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_released('slide') and parent.is_on_floor():
@@ -20,6 +21,8 @@ func process_input(event: InputEvent) -> State:
 		slide_force = 120
 		timer.start()
 		return move_state
+	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
+		return jump_state
 	return null
 
 func process_physics(delta: float) -> State:

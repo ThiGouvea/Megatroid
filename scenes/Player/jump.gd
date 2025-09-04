@@ -4,12 +4,16 @@ extends State
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
-
-@export var jump_force: float = 300.0
+@export var jump_force: float = 350.0
 
 func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
+
+func process_input(event: InputEvent) -> State:
+	if Input.is_action_just_released('jump') and !parent.is_on_floor():
+		parent.velocity.y = 100
+	return null
 
 func process_physics(delta: float) -> State:
 	if parent.shooting:

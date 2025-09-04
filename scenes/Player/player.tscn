@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=39 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -99,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"damaged",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -201,8 +201,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
 size = Vector2(12, 21.5)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_jxtnq"]
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_g2els")
@@ -210,7 +208,7 @@ script = ExtResource("1_g2els")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idleshooting"
+animation = &"damaged"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.75)
@@ -263,14 +261,12 @@ animation_name = "damaged"
 wait_time = 0.1
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="state_machine/damaged"]
-sprite_frames = SubResource("SpriteFrames_jxtnq")
-
-[node name="slide" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+[node name="slide" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_state")]
 script = ExtResource("14_t6q27")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+jump_state = NodePath("../jump")
 animation_name = "slide"
 
 [node name="Timer" type="Timer" parent="state_machine/slide"]
