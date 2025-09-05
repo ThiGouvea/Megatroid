@@ -1,8 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy8q145tk8qgh"]
+[gd_scene load_steps=14 format=3 uid="uid://cy8q145tk8qgh"]
 
 [ext_resource type="Texture2D" uid="uid://dwymgk0ygl3yc" path="res://assets/sprites/slime_green.png" id="1_jwlyq"]
 [ext_resource type="Script" uid="uid://c5gc6kp2r1bt3" path="res://scripts/greenenemy.gd" id="1_yiqwf"]
-[ext_resource type="PackedScene" uid="uid://buoqh1uunh3rc" path="res://scenes/damage_zone.tscn" id="3_yiqwf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwlyq"]
+atlas = ExtResource("1_jwlyq")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiqwf"]
+atlas = ExtResource("1_jwlyq")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3mqm"]
+atlas = ExtResource("1_jwlyq")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rag8o"]
+atlas = ExtResource("1_jwlyq")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kq84"]
+atlas = ExtResource("1_jwlyq")
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmmvg"]
 atlas = ExtResource("1_jwlyq")
@@ -24,6 +43,31 @@ region = Rect2(72, 24, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jwlyq")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiqwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3mqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rag8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kq84")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pmmvg")
 }, {
 "duration": 1.0,
@@ -41,16 +85,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmmvg"]
-size = Vector2(10, 12)
+size = Vector2(10, 14)
 
-[node name="Node2D" type="Node2D"]
+[node name="GreenEnemy" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_yiqwf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_o3mqm")
-autoplay = "default"
-frame_progress = 0.866345
 
 [node name="RayCastright" type="RayCast2D" parent="."]
 position = Vector2(0, -5)
@@ -68,8 +112,14 @@ target_position = Vector2(-9, 9)
 position = Vector2(0, -5)
 target_position = Vector2(9, 9)
 
-[node name="damage_zone" parent="." instance=ExtResource("3_yiqwf")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
-position = Vector2(0, -6)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_pmmvg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

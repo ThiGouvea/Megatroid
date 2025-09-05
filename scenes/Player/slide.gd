@@ -15,7 +15,7 @@ func enter() -> void:
 	if !justslided:
 		slide_force = 150
 	
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_released('slide') and parent.is_on_floor():
 		justslided = true
 		slide_force = 120

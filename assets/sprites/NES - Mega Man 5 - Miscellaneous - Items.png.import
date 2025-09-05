@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g1sbvttpblbj"
-path="res://.godot/imported/SNES - Mega Man X - Playable Characters - X.png-5827e06a335545232df44ab57b3c545b.ctex"
+uid="uid://b8vj3o45qjjaj"
+path="res://.godot/imported/NES - Mega Man 5 - Miscellaneous - Items.png-79ae69d7c97c8b8808ef50ff3883318b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/SNES - Mega Man X - Playable Characters - X.png"
-dest_files=["res://.godot/imported/SNES - Mega Man X - Playable Characters - X.png-5827e06a335545232df44ab57b3c545b.ctex"]
+source_file="res://assets/sprites/NES - Mega Man 5 - Miscellaneous - Items.png"
+dest_files=["res://.godot/imported/NES - Mega Man 5 - Miscellaneous - Items.png-79ae69d7c97c8b8808ef50ff3883318b.ctex"]
 
 [params]
 

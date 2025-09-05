@@ -199,7 +199,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
-size = Vector2(12, 21.5)
+size = Vector2(9, 21.5)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -208,11 +208,14 @@ script = ExtResource("1_g2els")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"damaged"
+animation = &"idle"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10.75)
+position = Vector2(0.5, -10.75)
 shape = SubResource("RectangleShape2D_qlg0r")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-16, -13)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "damaged")]
 script = ExtResource("6_hvfru")
@@ -273,6 +276,5 @@ animation_name = "slide"
 wait_time = 0.3
 one_shot = true
 
-[connection signal="quantDano" from="." to="state_machine" method="_on_player_quant_dano"]
 [connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
 [connection signal="timeout" from="state_machine/slide/Timer" to="state_machine/slide" method="_on_timer_timeout"]

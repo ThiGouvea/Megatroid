@@ -8,11 +8,13 @@ extends State
 
 func enter() -> void:
 	super()
+	if parent.shooting:
+		parent.animations.play('falljumpshooting')
 	parent.velocity.y = -jump_force
 
-func process_input(event: InputEvent) -> State:
+func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_released('jump') and !parent.is_on_floor():
-		parent.velocity.y = 100
+		parent.velocity.y = 0
 	return null
 
 func process_physics(delta: float) -> State:

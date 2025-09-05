@@ -16,7 +16,7 @@ func enter() -> void:
 	dano += 1
 	print(dano)
 	
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	if outtime:
 		if !parent.is_on_floor():
 			return fall_state

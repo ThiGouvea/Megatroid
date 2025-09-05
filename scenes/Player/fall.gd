@@ -3,9 +3,15 @@ extends State
 @export var idle_state: State
 @export var move_state: State
 
+func enter():
+	super()
+	if parent.shooting:
+		parent.animations.play('falljumpshooting')
+
 func process_physics(delta: float) -> State:
 	if parent.shooting:
 		parent.animations.play('falljumpshooting')
+	
 	parent.velocity.y += gravity * delta
 
 	var movement = Input.get_axis('move_left', 'move_right') * move_speed
