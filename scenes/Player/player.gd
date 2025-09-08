@@ -4,7 +4,10 @@ extends CharacterBody2D
 @onready var animations = $animations
 @onready var state_machine = $state_machine
 @export var shooting: bool = false
+var vulneravel = true
+@onready var timer: Timer = $Timer
 
+signal taken_damage
 signal shoted(pos, fliped)
 
 func _ready() -> void:
@@ -29,4 +32,13 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+func _damaged() -> void:
+	if vulneravel:
+		taken_damage.emit()
+		timer.start()
+		vulneravel = false
+		
 	
+func _on_timer_timeout() -> void:
+	vulneravel = true

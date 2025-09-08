@@ -39,6 +39,5 @@ func process_frame(delta: float) -> void:
 	if new_state:
 		change_state(new_state)
 
-
-func _on_player_quant_dano() -> void:
+func _on_player_taken_damage() -> void:
 	change_state(damaged)

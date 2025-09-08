@@ -274,7 +274,7 @@ move_state = NodePath("../move")
 animation_name = "damaged"
 
 [node name="Timer" type="Timer" parent="state_machine/damaged"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="slide" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_state")]
@@ -289,5 +289,11 @@ animation_name = "slide"
 wait_time = 0.3
 one_shot = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="taken_damage" from="." to="state_machine" method="_on_player_taken_damage"]
 [connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
 [connection signal="timeout" from="state_machine/slide/Timer" to="state_machine/slide" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

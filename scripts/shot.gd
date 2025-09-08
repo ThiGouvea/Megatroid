@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var _fliped = false
 var travel_distance = 0
-var distancia_maxima = 30
+var distancia_maxima = 10
 # Called when the node enters the scene tree for the first time.
 func setup(_valor: bool) -> void:
 	_fliped = _valor

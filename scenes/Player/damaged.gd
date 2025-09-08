@@ -5,14 +5,12 @@ extends State
 @export var move_state: State
 @onready var timer: Timer = $Timer
 var outtime = false
-var invulneravel = false
 var dano = 0
 
 func enter() -> void:
 	super()
 	outtime = false
 	timer.start()
-	invulneravel = true
 	dano += 1
 	print(dano)
 	
@@ -24,9 +22,8 @@ func process_physics(_delta: float) -> State:
 			return move_state
 		else:
 			return idle_state
-	parent.move_and_slide()
+	#parent.move_and_slide()
 	return null
-
 
 func _on_timer_timeout() -> void:
 	outtime = true

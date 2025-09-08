@@ -28,6 +28,9 @@ func _on_body_entered(body: Node2D) -> void:
 		$AnimatedSprite2D.play("damaged")
 		$Timer.start()
 		HP -= 1
+	if body.name == "Player":
+		print("enemy")
+		body._damaged()
 	
 
 func _on_timer_timeout() -> void:
