@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=41 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dnykfjyumvku8" path="res://assets/sprites/Run.png" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://bptp1oxqwxiq4" path="res://scenes/Player/state_machine.gd" id="6_hvfru"]
 [ext_resource type="Script" uid="uid://b64odbad0lt4g" path="res://scenes/Player/idle.gd" id="7_a06cl"]
+[ext_resource type="Texture2D" uid="uid://p47j0bixmjkp" path="res://assets/sprites/idleshotingup.png" id="7_aciub"]
 [ext_resource type="Texture2D" uid="uid://uaxpfmkolfvn" path="res://assets/sprites/slide.png" id="7_wyey8"]
 [ext_resource type="Script" uid="uid://cpgbxa1y4k7nb" path="res://scenes/Player/jump.gd" id="8_dl1wr"]
 [ext_resource type="Texture2D" uid="uid://biaokadi6eydg" path="res://assets/sprites/moveshoting.png" id="8_tayva"]
@@ -41,6 +42,10 @@ region = Rect2(24, 0, 24, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_an8q1"]
 atlas = ExtResource("5_tayva")
+region = Rect2(0, 0, 31, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn0uf"]
+atlas = ExtResource("7_aciub")
 region = Rect2(0, 0, 31, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyey8"]
@@ -138,6 +143,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jn0uf")
+}],
+"loop": true,
+"name": &"idleshootingup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wyey8")
 }],
 "loop": true,
@@ -208,7 +221,7 @@ script = ExtResource("1_g2els")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idle"
+animation = &"idleshootingup"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -10.75)
