@@ -1,7 +1,6 @@
 class_name move
 extends State
 
-@export var moveshooting_state: State
 @export var fall_state: State
 @export var idle_state: State
 @export var jump_state: State

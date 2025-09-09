@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyq4oiw52b0km"]
 
 [ext_resource type="Script" uid="uid://dfqgpgastimlv" path="res://scripts/shot.gd" id="1_cupcd"]
-[ext_resource type="Texture2D" uid="uid://b8vj3o45qjjaj" path="res://assets/sprites/NES - Mega Man 5 - Miscellaneous - Items.png" id="1_ta7u2"]
+[ext_resource type="Texture2D" uid="uid://co7g0fnlx1qs2" path="res://assets/sprites/shot.png" id="2_cupcd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cupcd"]
 radius = 4.17442
@@ -14,9 +14,9 @@ collision_mask = 3
 script = ExtResource("1_cupcd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ta7u2")
+texture = ExtResource("2_cupcd")
 region_enabled = true
-region_rect = Rect2(1, 5, 8, 8)
+region_rect = Rect2(0, 1, 8, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3

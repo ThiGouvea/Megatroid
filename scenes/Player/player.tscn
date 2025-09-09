@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=42 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bjmeys0blx80r" path="res://scenes/Player/morto.gd" id="11_n7rn1"]
 [ext_resource type="Script" uid="uid://bl36r8refocrr" path="res://scenes/Player/damaged.gd" id="12_7tfl1"]
 [ext_resource type="Script" uid="uid://butinmrb1oxnl" path="res://scenes/Player/slide.gd" id="14_t6q27"]
+[ext_resource type="Script" uid="uid://gutr55k3vi6y" path="res://scenes/Player/respawning.gd" id="20_hk2ix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
 atlas = ExtResource("2_jxtnq")
@@ -230,9 +231,10 @@ shape = SubResource("RectangleShape2D_qlg0r")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-16, -13)
 
-[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "damaged")]
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "dead", "damaged")]
 script = ExtResource("6_hvfru")
 starting_state = NodePath("idle")
+dead = NodePath("dead")
 damaged = NodePath("damaged")
 
 [node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
@@ -263,8 +265,9 @@ idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "fall"
 
-[node name="dead" type="Node" parent="state_machine"]
+[node name="dead" type="Node" parent="state_machine" node_paths=PackedStringArray("respawning")]
 script = ExtResource("11_n7rn1")
+respawning = NodePath("../respawning")
 
 [node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
 script = ExtResource("12_7tfl1")
@@ -274,7 +277,7 @@ move_state = NodePath("../move")
 animation_name = "damaged"
 
 [node name="Timer" type="Timer" parent="state_machine/damaged"]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="slide" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_state")]
@@ -289,10 +292,15 @@ animation_name = "slide"
 wait_time = 0.3
 one_shot = true
 
+[node name="respawning" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("20_hk2ix")
+idle_state = NodePath("../idle")
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
+[connection signal="dead" from="." to="state_machine" method="_on_player_dead"]
 [connection signal="taken_damage" from="." to="state_machine" method="_on_player_taken_damage"]
 [connection signal="timeout" from="state_machine/damaged/Timer" to="state_machine/damaged" method="_on_timer_timeout"]
 [connection signal="timeout" from="state_machine/slide/Timer" to="state_machine/slide" method="_on_timer_timeout"]

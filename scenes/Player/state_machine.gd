@@ -1,6 +1,8 @@
 extends Node
 
 @export var starting_state: State
+
+@export var dead: State
 @export var damaged: State
 var current_state: State
 @onready var damagedvuln: Node = $damaged
@@ -41,3 +43,6 @@ func process_frame(delta: float) -> void:
 
 func _on_player_taken_damage() -> void:
 	change_state(damaged)
+
+func _on_player_dead() -> void:
+	change_state(dead)

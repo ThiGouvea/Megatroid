@@ -186,6 +186,12 @@ position = Vector2(15.3687, -3)
 [node name="GreenEnemy" parent="levels/level1" instance=ExtResource("10_vtaks")]
 position = Vector2(-238.815, -63.6261)
 
+[node name="GreenEnemy2" parent="levels/level1" instance=ExtResource("10_vtaks")]
+position = Vector2(-217.356, -63.6261)
+
+[node name="GreenEnemy3" parent="levels/level1" instance=ExtResource("10_vtaks")]
+position = Vector2(-344, -80)
+
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_80nbo")]

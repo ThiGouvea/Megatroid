@@ -5,14 +5,11 @@ extends State
 @export var move_state: State
 @onready var timer: Timer = $Timer
 var outtime = false
-var dano = 0
 
 func enter() -> void:
 	super()
 	outtime = false
 	timer.start()
-	dano += 1
-	print(dano)
 	
 func process_physics(_delta: float) -> State:
 	if outtime:

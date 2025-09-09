@@ -1,8 +1,10 @@
 extends CharacterBody2D
+@onready var shot_hit: AnimatedSprite2D = $ShotHit
 
 var _fliped = false
 var travel_distance = 0
-var distancia_maxima = 10
+var distancia_maxima = 20
+
 # Called when the node enters the scene tree for the first time.
 func setup(_valor: bool) -> void:
 	_fliped = _valor
