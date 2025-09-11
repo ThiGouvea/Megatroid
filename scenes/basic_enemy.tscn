@@ -54,7 +54,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aptn8")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying",
 "speed": 5.0
 }, {
@@ -87,7 +87,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walking",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md22f"]
@@ -105,7 +105,7 @@ damage_to_player = 1
 position = Vector2(0.0817566, -36.4316)
 scale = Vector2(3.00978, 3.00978)
 sprite_frames = SubResource("SpriteFrames_n365g")
-animation = &"walking"
+animation = &"dying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.303169, -21.0179)

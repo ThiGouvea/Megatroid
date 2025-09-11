@@ -21,20 +21,16 @@ func _set_state(new_state: STATE) -> void:
 	_enter_state()
 
 func _enter_state() -> void:
-	match current_state:
-		pass
+	pass
 			
 func _exit_state() -> void:
-	match current_state:
-		pass
+	pass
 			
 func _update_state(delta: float) -> void:
-	match current_state:
-		pass
+	pass
 
 func _physics_process(delta: float) -> void:
 	_update_state(delta)
-
 
 func _on_body_entered(body: Node2D) -> void:
 		if body.name == "Shot":

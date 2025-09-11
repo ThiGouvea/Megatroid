@@ -2,7 +2,9 @@ class_name Player
 extends CharacterBody2D
 
 @export var HP: int
-@export var can_slide: bool
+@export var can_slide: bool = false
+@export var energy: int
+@export var can_shoot: bool = true
 
 @onready var animations = $animations
 @onready var state_machine = $state_machine
@@ -24,14 +26,15 @@ func _ready() -> void:
 	state_machine.init(self)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		shooting = true
-		if animations.flip_h:
-			shoted.emit($Marker2D.global_position, true)
+	if can_shoot:
+		if Input.is_action_just_pressed("shoot"):
+			shooting = true
+			if animations.flip_h:
+				shoted.emit($MarkerDireita.global_position, true)
+			else:
+				shoted.emit($MarkerEsquerda.global_position, false)
 		else:
-			shoted.emit($Marker2D.global_position, false)
-	else:
-		shooting = false
+			shooting = false
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:

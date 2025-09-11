@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6cs61lfjjw4b"]
+[gd_scene load_steps=9 format=3 uid="uid://b6cs61lfjjw4b"]
 
 [ext_resource type="Script" uid="uid://dccv8dr8rbqkf" path="res://scripts/coin.gd" id="1_i64fm"]
 [ext_resource type="Texture2D" uid="uid://2ta30wvtqbvd" path="res://assets/sprites/HPBig.png" id="2_i64fm"]
@@ -29,6 +29,18 @@ animations = [{
 radius = 8.0
 height = 16.0
 
+[sub_resource type="Gradient" id="Gradient_i64fm"]
+offsets = PackedFloat32Array(0, 0.473251, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0.572549, 0.572549, 0.572549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_11l1o"]
+gradient = SubResource("Gradient_i64fm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0.833333)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
 [node name="Coin" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
@@ -41,5 +53,11 @@ autoplay = "new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i64fm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 1, 1, 1)
+energy = 0.5
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_11l1o")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

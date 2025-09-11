@@ -11,7 +11,6 @@ func _on_player_shoted(pos, fliped) -> void:
 	var shot = shot_scene.instantiate()
 	if fliped:
 		shot.position = pos
-		shot.position.x += 30
 		$shots.add_child(shot)
 		shot.setup(true)
 	else:

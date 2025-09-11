@@ -4,6 +4,7 @@ extends Node2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_down_left: RayCast2D = $RayCastDownLeft
 @onready var ray_cast_down_right: RayCast2D = $RayCastDownRight
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var direction = 1
 var HP = 2
@@ -31,6 +32,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if HP > 0:
 			$AnimatedSprite2D.play("damaged")
 		elif HP <= 0:
+			collision_shape_2d.set_deferred("disabled", true)
 			$AnimatedSprite2D.play("death")
 		else:
 			$AnimatedSprite2D.play("default")

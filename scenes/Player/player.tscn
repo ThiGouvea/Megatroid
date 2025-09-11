@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=47 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b64odbad0lt4g" path="res://scenes/Player/idle.gd" id="7_a06cl"]
 [ext_resource type="Texture2D" uid="uid://p47j0bixmjkp" path="res://assets/sprites/idleshotingup.png" id="7_aciub"]
 [ext_resource type="Texture2D" uid="uid://uaxpfmkolfvn" path="res://assets/sprites/slide.png" id="7_wyey8"]
+[ext_resource type="Texture2D" uid="uid://dw4sr5heswngp" path="res://assets/sprites/teleporting.png" id="8_43ckd"]
 [ext_resource type="Script" uid="uid://cpgbxa1y4k7nb" path="res://scenes/Player/jump.gd" id="8_dl1wr"]
 [ext_resource type="Texture2D" uid="uid://biaokadi6eydg" path="res://assets/sprites/moveshoting.png" id="8_tayva"]
 [ext_resource type="Script" uid="uid://c4th0ak476f12" path="res://scenes/Player/move.gd" id="8_wwtew"]
@@ -52,6 +53,22 @@ region = Rect2(0, 0, 31, 30)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyey8"]
 atlas = ExtResource("3_dqkch")
 region = Rect2(0, 0, 26, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbg44"]
+atlas = ExtResource("8_43ckd")
+region = Rect2(48, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni0x"]
+atlas = ExtResource("8_43ckd")
+region = Rect2(72, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp55c"]
+atlas = ExtResource("8_43ckd")
+region = Rect2(96, 0, 24, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32uah"]
+atlas = ExtResource("8_43ckd")
+region = Rect2(120, 0, 24, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("4_tuyoq")
@@ -160,6 +177,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nbg44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp55c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32uah")
+}],
+"loop": false,
+"name": &"landing",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y4r1p")
 }, {
 "duration": 1.0,
@@ -218,21 +252,24 @@ size = Vector2(9, 21.5)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_g2els")
-HP = 5
-can_slide = true
+HP = 1
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 light_mask = 7
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idleshooting"
+animation = &"landing"
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -10.75)
+position = Vector2(0, -10.75)
 shape = SubResource("RectangleShape2D_qlg0r")
+debug_color = Color(1.68458e-07, 0.257478, 0.305184, 0.42)
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="MarkerEsquerda" type="Marker2D" parent="."]
 position = Vector2(-16, -13)
+
+[node name="MarkerDireita" type="Marker2D" parent="."]
+position = Vector2(18, -13)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "dead", "damaged")]
 script = ExtResource("6_hvfru")
@@ -298,10 +335,22 @@ one_shot = true
 [node name="respawning" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("20_hk2ix")
 idle_state = NodePath("../idle")
+animation_name = "landing"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -30)
+zoom = Vector2(3, 3)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
 
 [connection signal="dead" from="." to="state_machine" method="_on_player_dead"]
 [connection signal="taken_damage" from="." to="state_machine" method="_on_player_taken_damage"]

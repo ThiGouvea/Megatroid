@@ -5,6 +5,7 @@ class_name basic_enemy extends Area2D
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_down_right: RayCast2D = $RayCastDownRight
 @onready var ray_cast_down_left: RayCast2D = $RayCastDownLeft
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var velocidade_movimento: int
 @export var hp_enemy: int
@@ -36,6 +37,7 @@ func _enter_state() -> void:
 			animated_sprite.play("takingdamage")
 			
 		STATE.DYING:
+			collision_shape_2d.set_deferred("disabled", true)
 			animated_sprite.play("dying")
 			
 func _exit_state() -> void:
@@ -65,7 +67,7 @@ func _update_state(delta: float) -> void:
 				_set_state(STATE.WALKING)
 		
 		STATE.DYING:
-			if animated_sprite.frame >= 3:
+			if !animated_sprite.is_playing():
 				_exit_state()
 
 func _physics_process(delta: float) -> void:
