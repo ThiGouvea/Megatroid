@@ -1,10 +1,13 @@
 extends RigidBody2D
 @onready var shot_hit: AnimatedSprite2D = $ShotHit
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
+var distancia_maxima: int = 10
+var damage_shot: int = 1
 
 var _fliped = false
 var travel_distance = 0
-var distancia_maxima = 20
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func setup(_valor: bool) -> void:
@@ -21,8 +24,9 @@ func _process(delta: float) -> void:
 	if travel_distance >= distancia_maxima or travel_distance <= -distancia_maxima:
 		queue_free()
 
-func _on_hit() -> void:
+func _on_hit() -> int:
 	queue_free()
+	return damage_shot
 
 func _on_body_entered(body: Node) -> void:
 	queue_free()

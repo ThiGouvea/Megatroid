@@ -11,9 +11,12 @@ var justslided = false
 
 func enter() -> void:
 	super()
-	parent.shooting = false
-	if !justslided:
-		slide_force = 150
+	if parent.can_slide:
+		parent.shooting = false
+		if !justslided:
+			slide_force = 150
+	else:
+		justslided = true
 	
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_released('slide') and parent.is_on_floor():
@@ -26,6 +29,9 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if !parent.can_slide:
+		return move_state
+		
 	parent.velocity.y += gravity * delta
 	
 	if timer.time_left > 0 or slide_force <= 0:

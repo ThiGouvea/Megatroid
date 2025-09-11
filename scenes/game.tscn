@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cnixak46eh5rl"]
+[gd_scene load_steps=20 format=4 uid="uid://cnixak46eh5rl"]
 
 [ext_resource type="PackedScene" uid="uid://dpx03g1xtlg1q" path="res://scenes/Player/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dbumpvexc01ax" path="res://scenes/game.gd" id="1_yqjtg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d8m16ekmolcw" path="res://scenes/platform.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://b6cs61lfjjw4b" path="res://scenes/coin.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://bnujpb2ncrnnw" path="res://scenes/kill_zone.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://bfvn35pmo8u8k" path="res://scenes/basic_enemy.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cy8q145tk8qgh" path="res://scenes/greenenemy.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnpc"]
@@ -239,6 +240,14 @@ position = Vector2(-217.356, -63.6261)
 
 [node name="GreenEnemy3" parent="levels/level1" instance=ExtResource("10_vtaks")]
 position = Vector2(-344, -80)
+
+[node name="BasicEnemy" parent="levels/level1" instance=ExtResource("9_0tnpc")]
+position = Vector2(0, 16)
+collision_layer = 3
+collision_mask = 3
+velocidade_movimento = 5
+hp_enemy = 5
+damage_to_player = 2
 
 [node name="Player" type="Node" parent="."]
 

@@ -1,13 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
-var HP = 1
+@export var HP: int
+@export var can_slide: bool
 
 @onready var animations = $animations
 @onready var state_machine = $state_machine
-@export var shooting: bool = false
-var vulneravel = true
 @onready var timer: Timer = $Timer
+
+
+var shooting: bool = false
+var vulneravel = true
+
 
 signal taken_damage
 signal shoted(pos, fliped)

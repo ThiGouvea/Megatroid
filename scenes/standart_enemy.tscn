@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drdy5pl2etpye"]
+
+[ext_resource type="Script" uid="uid://bcmundhabivhi" path="res://scripts/BasicScripts/standart_enemy.gd" id="1_b34wm"]
+
+[node name="StandartEnemy" type="Area2D"]
+script = ExtResource("1_b34wm")
