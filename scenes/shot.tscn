@@ -1,16 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyq4oiw52b0km"]
+[gd_scene load_steps=6 format=3 uid="uid://cyq4oiw52b0km"]
 
 [ext_resource type="Script" uid="uid://dfqgpgastimlv" path="res://scripts/shot.gd" id="1_cupcd"]
 [ext_resource type="Texture2D" uid="uid://co7g0fnlx1qs2" path="res://assets/sprites/shot.png" id="2_cupcd"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cupcd"]
-radius = 4.17442
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cupcd"]
+radius = 2.98333
+height = 8.05225
 
-[node name="Shot" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_cupcd"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.00411523, 0.218107, 1)
+colors = PackedColorArray(0.238683, 0.238683, 0.238683, 1, 0.972549, 1, 1, 0.615686, 0.690401, 0.690401, 0.690401, 0.635192, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r6d4o"]
+gradient = SubResource("Gradient_cupcd")
+width = 50
+height = 50
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="Shot" type="RigidBody2D"]
 top_level = true
 visibility_layer = 3
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_cupcd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,4 +35,15 @@ region_rect = Rect2(0, 1, 8, 6)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
 visibility_layer = 3
-shape = SubResource("CircleShape2D_cupcd")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cupcd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3.8147e-06, -1.90735e-06)
+scale = Vector2(1.82149, 1.75033)
+color = Color(0.52549, 1, 1, 1)
+energy = 0.36
+texture = SubResource("GradientTexture2D_r6d4o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

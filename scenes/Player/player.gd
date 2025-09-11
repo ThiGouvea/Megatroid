@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-var HP = 10
+var HP = 1
 
 @onready var animations = $animations
 @onready var state_machine = $state_machine
@@ -42,6 +42,7 @@ func _damaged(_dano: int) -> void:
 		print(HP)
 		if HP <= 0:
 			dead.emit()
+			return
 		taken_damage.emit()
 		timer.start()
 		vulneravel = false

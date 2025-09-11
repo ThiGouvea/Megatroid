@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Shot":
-		body.queue_free()
+		body._on_hit()
 		HP -= 1
 		if HP > 0:
 			$AnimatedSprite2D.play("damaged")

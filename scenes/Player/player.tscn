@@ -220,9 +220,10 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
+light_mask = 7
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idleshootingup"
+animation = &"idleshooting"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -10.75)
