@@ -1,6 +1,5 @@
 class_name playerdead extends State
 
-@onready var player: Player = $"../.."
 @export var respawning: State
 var dead = true
 

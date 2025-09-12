@@ -16,7 +16,7 @@ var vulneravel = true
 
 
 signal taken_damage
-signal shoted(pos, fliped)
+signal shoted(pos, fliped, up, down)
 signal dead
 
 func _ready() -> void:
@@ -30,9 +30,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_just_pressed("shoot"):
 			shooting = true
 			if animations.flip_h:
-				shoted.emit($MarkerDireita.global_position, true)
+				if Input.is_action_pressed("up"):
+					shoted.emit($MarkerDireita.global_position, true, true, false)
+				elif Input.is_action_pressed("down"):
+					shoted.emit($MarkerDireita.global_position, true, false, true)
+				else:
+					shoted.emit($MarkerDireita.global_position, true, false, false)
 			else:
-				shoted.emit($MarkerEsquerda.global_position, false)
+				if Input.is_action_pressed("up"):
+					shoted.emit($MarkerEsquerda.global_position, false, true, false)
+				elif Input.is_action_pressed("down"):
+					shoted.emit($MarkerEsquerda.global_position, false, false, true)
+				else:
+					shoted.emit($MarkerEsquerda.global_position, false, false, false)
 		else:
 			shooting = false
 	state_machine.process_input(event)
@@ -46,7 +56,6 @@ func _process(delta: float) -> void:
 func _damaged(_dano: int) -> void:
 	if vulneravel:
 		HP -= _dano
-		print(HP)
 		if HP <= 0:
 			dead.emit()
 			return

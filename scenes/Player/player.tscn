@@ -269,7 +269,7 @@ debug_color = Color(1.68458e-07, 0.257478, 0.305184, 0.42)
 position = Vector2(-16, -13)
 
 [node name="MarkerDireita" type="Marker2D" parent="."]
-position = Vector2(18, -13)
+position = Vector2(16, -13)
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "dead", "damaged")]
 script = ExtResource("6_hvfru")

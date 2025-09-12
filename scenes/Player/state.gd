@@ -1,6 +1,8 @@
 class_name State
 extends Node
 
+
+@onready var animation_shoting: AnimatedSprite2D = $AnimationShoting
 @export var animation_name: String
 @export var move_speed: float = 100
 
