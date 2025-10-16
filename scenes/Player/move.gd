@@ -5,6 +5,7 @@ extends State
 @export var idle_state: State
 @export var jump_state: State
 @export var slide_state: State
+@export var move_shooting: State
 
 
 func enter() -> void:
@@ -19,9 +20,6 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if parent.shooting:
-		parent.animations.play('moveshooting')
-		
 	parent.velocity.y += gravity * delta
 	
 	var movement = Input.get_axis('move_left', 'move_right') * move_speed
@@ -31,6 +29,9 @@ func process_physics(delta: float) -> State:
 	parent.animations.flip_h = movement > 0
 	parent.velocity.x = movement
 	parent.move_and_slide()
+	
+	if parent.shooting:
+		return move_shooting
 	
 	if !parent.is_on_floor():
 		return fall_state

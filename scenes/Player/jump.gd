@@ -4,6 +4,7 @@ extends State
 @export var fall_state: State
 @export var idle_state: State
 @export var move_state: State
+@export var jump_shooting: State
 @export var jump_force: float = 350.0
 
 func enter() -> void:
@@ -18,8 +19,6 @@ func process_input(_event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if parent.shooting:
-		parent.animations.play('falljumpshooting')
 	parent.velocity.y += gravity * delta
 	
 	if parent.velocity.y > 0:
@@ -31,6 +30,9 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = movement
 	parent.move_and_slide()
 
+	if parent.shooting:
+		return jump_shooting
+		
 	if parent.is_on_floor():
 		if movement != 0:
 			return move_state
