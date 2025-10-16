@@ -1,7 +1,9 @@
+class_name fall
 extends State
 
 @export var idle_state: State
 @export var move_state: State
+@export var fall_shooting: State
 
 func enter():
 	super()
@@ -9,8 +11,7 @@ func enter():
 		parent.animations.play('falljumpshooting')
 
 func process_physics(delta: float) -> State:
-	if parent.shooting:
-		parent.animations.play('falljumpshooting')
+	
 	
 	parent.velocity.y += gravity * delta
 
@@ -20,6 +21,9 @@ func process_physics(delta: float) -> State:
 		parent.animations.flip_h = movement > 0
 	parent.velocity.x = movement
 	parent.move_and_slide()
+	
+	if parent.shooting:
+		return fall_shooting
 	
 	if parent.is_on_floor():
 		if movement != 0:

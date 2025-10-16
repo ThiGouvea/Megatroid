@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.can_slide = true
 		queue_free()
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if animated_sprite_2d.frame == 1:
 		point_light_2d.visible = false
 	else:

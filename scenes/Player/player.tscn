@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=51 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://dtbc0jyx1t3gp" path="res://scenes/Player/moveshooting.gd" id="17_an8q1"]
 [ext_resource type="Script" uid="uid://bwxgevebdymn7" path="res://scenes/Player/jumpshooting.gd" id="19_hxkm2"]
 [ext_resource type="Script" uid="uid://gutr55k3vi6y" path="res://scenes/Player/respawning.gd" id="20_hk2ix"]
+[ext_resource type="Script" uid="uid://wmchmvcohfx" path="res://scenes/Player/fallshooting.gd" id="21_18ciy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
 atlas = ExtResource("2_jxtnq")
@@ -314,11 +315,13 @@ slide_state = NodePath("../slide")
 move_shooting = NodePath(".")
 animation_name = "moveshooting"
 
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting", "fall_shooting")]
 script = ExtResource("8_dl1wr")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+jump_shooting = NodePath("../jumpshooting")
+fall_shooting = NodePath("../fallshooting")
 animation_name = "jump"
 
 [node name="jumpshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting")]
@@ -329,11 +332,19 @@ move_state = NodePath("../move")
 jump_shooting = NodePath(".")
 animation_name = "falljumpshooting"
 
-[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting")]
 script = ExtResource("10_uxo23")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
+fall_shooting = NodePath("../fallshooting")
 animation_name = "fall"
+
+[node name="fallshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting")]
+script = ExtResource("21_18ciy")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+fall_shooting = NodePath(".")
+animation_name = "falljumpshooting"
 
 [node name="dead" type="Node" parent="state_machine" node_paths=PackedStringArray("respawning")]
 script = ExtResource("11_n7rn1")
