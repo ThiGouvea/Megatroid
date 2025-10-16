@@ -256,13 +256,13 @@ size = Vector2(9, 21.5)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_g2els")
-HP = 1
+HP = 10
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 light_mask = 7
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"landing"
+animation = &"damaged"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.75)

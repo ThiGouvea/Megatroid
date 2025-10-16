@@ -11,7 +11,7 @@ func enter() -> void:
 	animations.play("landing")
 
 func process_physics(_delta: float) -> State:
-	player.HP = 1
+	player.HP = 10
 	if !animations.is_playing():
 		return idle_state
 	return null
