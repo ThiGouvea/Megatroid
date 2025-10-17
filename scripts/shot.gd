@@ -17,8 +17,16 @@ func setup(_fliped: bool, _up: bool, _down: bool) -> void:
 	down = _down
 	if up:
 		position.y -= 10
+		if fliped:
+			rotate(40)
+		else:
+			rotate(-40)
 	elif down:
 		position.y += 10
+		if fliped:
+			rotate(-40)
+		else:
+			rotate(40)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -4,6 +4,7 @@ class_name idle extends State
 @export var jump_state: State
 @export var move_state: State
 @export var idleshooting_state: State
+@export var idleshootingup_state: State
 
 
 func enter() -> void:

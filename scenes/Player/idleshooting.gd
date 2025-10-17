@@ -1,1 +1,1 @@
-class_name idleshooting extends idle
+class_name idleshootingup extends idle

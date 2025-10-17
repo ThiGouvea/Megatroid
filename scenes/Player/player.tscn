@@ -262,7 +262,7 @@ HP = 10
 light_mask = 7
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"damaged"
+animation = &"idleshootingup"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.75)
@@ -296,6 +296,14 @@ jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 idleshooting_state = NodePath(".")
 animation_name = "idleshooting"
+
+[node name="idleshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state")]
+script = ExtResource("15_cctgl")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+idleshooting_state = NodePath(".")
+animation_name = "idleshootingup"
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting")]
 script = ExtResource("8_wwtew")
