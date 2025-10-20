@@ -12,6 +12,8 @@ extends CharacterBody2D
 
 
 var shooting: bool = false
+var shooting_up: bool = false
+var shooting_down: bool = false
 var vulneravel = true
 
 
@@ -32,19 +34,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			if animations.flip_h:
 				if Input.is_action_pressed("up"):
 					shoted.emit($MarkerDireita.global_position, true, true, false)
+					shooting_up = true
 				elif Input.is_action_pressed("down"):
 					shoted.emit($MarkerDireita.global_position, true, false, true)
+					shooting_down = true
 				else:
 					shoted.emit($MarkerDireita.global_position, true, false, false)
 			else:
 				if Input.is_action_pressed("up"):
 					shoted.emit($MarkerEsquerda.global_position, false, true, false)
+					shooting_up = true
 				elif Input.is_action_pressed("down"):
 					shoted.emit($MarkerEsquerda.global_position, false, false, true)
+					shooting_down = true
 				else:
 					shoted.emit($MarkerEsquerda.global_position, false, false, false)
 		else:
 			shooting = false
+			shooting_up = false
+			shooting_down = false
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:

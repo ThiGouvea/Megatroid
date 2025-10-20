@@ -281,28 +281,31 @@ starting_state = NodePath("idle")
 dead = NodePath("dead")
 damaged = NodePath("damaged")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state", "idleshootingup_state")]
 script = ExtResource("7_a06cl")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 idleshooting_state = NodePath("../idleshooting")
+idleshootingup_state = NodePath("../idleshootingup")
 animation_name = "idle"
 
-[node name="idleshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state")]
+[node name="idleshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state", "idleshootingup_state")]
 script = ExtResource("15_cctgl")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 idleshooting_state = NodePath(".")
+idleshootingup_state = NodePath("../idleshootingup")
 animation_name = "idleshooting"
 
-[node name="idleshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state")]
+[node name="idleshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state", "idleshootingup_state")]
 script = ExtResource("15_cctgl")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 idleshooting_state = NodePath(".")
+idleshootingup_state = NodePath(".")
 animation_name = "idleshootingup"
 
 [node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting")]
