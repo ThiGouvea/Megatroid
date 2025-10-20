@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=60 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bsqg80otn6pix" path="res://assets/sprites/Jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bbvfhoqe4nxyv" path="res://assets/sprites/morte.png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b4cfspqsix6mn" path="res://assets/sprites/jumpshoting.png" id="4_x8khf"]
+[ext_resource type="Texture2D" uid="uid://bp8yysvg7sf2p" path="res://assets/sprites/jumpshotingup.png" id="5_4ni0x"]
 [ext_resource type="Texture2D" uid="uid://db2f1x3ciudtm" path="res://assets/sprites/idleshoting.png" id="5_tayva"]
 [ext_resource type="Texture2D" uid="uid://dnykfjyumvku8" path="res://assets/sprites/Run.png" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://bptp1oxqwxiq4" path="res://scenes/Player/state_machine.gd" id="6_hvfru"]
@@ -19,12 +20,16 @@
 [ext_resource type="Script" uid="uid://caascye0hlrn2" path="res://scenes/Player/fall.gd" id="10_uxo23"]
 [ext_resource type="Script" uid="uid://bjmeys0blx80r" path="res://scenes/Player/morto.gd" id="11_n7rn1"]
 [ext_resource type="Script" uid="uid://bl36r8refocrr" path="res://scenes/Player/damaged.gd" id="12_7tfl1"]
+[ext_resource type="Texture2D" uid="uid://d4kit88mca1bk" path="res://assets/sprites/moveshotingup.png" id="12_nbg44"]
 [ext_resource type="Script" uid="uid://butinmrb1oxnl" path="res://scenes/Player/slide.gd" id="14_t6q27"]
 [ext_resource type="Script" uid="uid://b7mtwmlac1tck" path="res://scenes/Player/idleshooting.gd" id="15_cctgl"]
+[ext_resource type="Script" uid="uid://b1m13kg4uxaxd" path="res://scenes/Player/idleshootingup.gd" id="16_cg2hl"]
 [ext_resource type="Script" uid="uid://dtbc0jyx1t3gp" path="res://scenes/Player/moveshooting.gd" id="17_an8q1"]
 [ext_resource type="Script" uid="uid://bwxgevebdymn7" path="res://scenes/Player/jumpshooting.gd" id="19_hxkm2"]
+[ext_resource type="Script" uid="uid://bs4tjtmbemln8" path="res://scenes/Player/moveshootingup.gd" id="19_o05ft"]
 [ext_resource type="Script" uid="uid://gutr55k3vi6y" path="res://scenes/Player/respawning.gd" id="20_hk2ix"]
 [ext_resource type="Script" uid="uid://wmchmvcohfx" path="res://scenes/Player/fallshooting.gd" id="21_18ciy"]
+[ext_resource type="Script" uid="uid://ddeckw4m3opqu" path="res://scenes/Player/fallshootingup.gd" id="25_jn0uf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
 atlas = ExtResource("2_jxtnq")
@@ -36,6 +41,10 @@ region = Rect2(0, 0, 26, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o05ft"]
 atlas = ExtResource("4_x8khf")
+region = Rect2(0, 0, 29, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8txv"]
+atlas = ExtResource("5_4ni0x")
 region = Rect2(0, 0, 29, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8khf"]
@@ -114,6 +123,18 @@ region = Rect2(29, 0, 29, 30)
 atlas = ExtResource("8_tayva")
 region = Rect2(58, 0, 29, 30)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihqbe"]
+atlas = ExtResource("12_nbg44")
+region = Rect2(0, 0, 29, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmen"]
+atlas = ExtResource("12_nbg44")
+region = Rect2(29, 0, 29, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqhit"]
+atlas = ExtResource("12_nbg44")
+region = Rect2(58, 0, 29, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bwnf"]
 atlas = ExtResource("7_wyey8")
 region = Rect2(0, 0, 27, 21)
@@ -142,6 +163,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"falljumpshooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8txv")
+}],
+"loop": true,
+"name": &"falljumpshootingup",
 "speed": 5.0
 }, {
 "frames": [{
@@ -243,6 +272,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ihqbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgmen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqhit")
+}],
+"loop": true,
+"name": &"moveshootingup",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1bwnf")
 }],
 "loop": true,
@@ -262,7 +305,7 @@ HP = 10
 light_mask = 7
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_186t8")
-animation = &"idleshootingup"
+animation = &"falljumpshootingup"
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10.75)
@@ -300,62 +343,86 @@ idleshootingup_state = NodePath("../idleshootingup")
 animation_name = "idleshooting"
 
 [node name="idleshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idleshooting_state", "idleshootingup_state")]
-script = ExtResource("15_cctgl")
+script = ExtResource("16_cg2hl")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
-idleshooting_state = NodePath(".")
+idleshooting_state = NodePath("../idleshooting")
 idleshootingup_state = NodePath(".")
 animation_name = "idleshootingup"
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting", "move_shootingup")]
 script = ExtResource("8_wwtew")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 slide_state = NodePath("../slide")
 move_shooting = NodePath("../moveshooting")
+move_shootingup = NodePath("../moveshootingup")
 animation_name = "move"
 
-[node name="moveshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting")]
+[node name="moveshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting", "move_shootingup")]
 script = ExtResource("17_an8q1")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 slide_state = NodePath("../slide")
 move_shooting = NodePath(".")
+move_shootingup = NodePath("../moveshootingup")
 animation_name = "moveshooting"
 
-[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting", "fall_shooting")]
+[node name="moveshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "slide_state", "move_shooting", "move_shootingup")]
+script = ExtResource("19_o05ft")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../idle")
+jump_state = NodePath("../jump")
+slide_state = NodePath("../slide")
+move_shooting = NodePath("../moveshooting")
+move_shootingup = NodePath(".")
+animation_name = "moveshootingup"
+
+[node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting", "fall_shooting", "fall_shootingup")]
 script = ExtResource("8_dl1wr")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 jump_shooting = NodePath("../jumpshooting")
 fall_shooting = NodePath("../fallshooting")
+fall_shootingup = NodePath("../fallshootingup")
 animation_name = "jump"
 
-[node name="jumpshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting")]
+[node name="jumpshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "jump_shooting", "fall_shooting")]
 script = ExtResource("19_hxkm2")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 jump_shooting = NodePath(".")
+fall_shooting = NodePath("../fallshooting")
 animation_name = "falljumpshooting"
 
-[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting")]
+[node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting", "fall_shootingup")]
 script = ExtResource("10_uxo23")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 fall_shooting = NodePath("../fallshooting")
+fall_shootingup = NodePath("../fallshootingup")
 animation_name = "fall"
 
-[node name="fallshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting")]
+[node name="fallshooting" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting", "fall_shootingup")]
 script = ExtResource("21_18ciy")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 fall_shooting = NodePath(".")
+fall_shootingup = NodePath("../fallshootingup")
 animation_name = "falljumpshooting"
+
+[node name="fallshootingup" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "fall_shooting", "fall_shootingup")]
+script = ExtResource("25_jn0uf")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+fall_shooting = NodePath("../fallshooting")
+fall_shootingup = NodePath(".")
+animation_name = "falljumpshootingup"
 
 [node name="dead" type="Node" parent="state_machine" node_paths=PackedStringArray("respawning")]
 script = ExtResource("11_n7rn1")

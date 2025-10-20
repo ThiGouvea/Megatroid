@@ -23,7 +23,6 @@ func process_physics(delta: float) -> State:
 		if parent.shooting_up:
 			return idleshootingup_state
 		else:
-					#parent.animations.play('idleshooting')
 			return idleshooting_state
 		
 	parent.velocity.y += gravity * delta

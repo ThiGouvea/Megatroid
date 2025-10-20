@@ -53,6 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			shooting = false
 			shooting_up = false
 			shooting_down = false
+			print('falses')
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:

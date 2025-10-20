@@ -6,6 +6,7 @@ extends State
 @export var move_state: State
 @export var jump_shooting: State
 @export var fall_shooting: State
+@export var fall_shootingup: State
 
 @export var jump_force: float = 350.0
 
@@ -23,6 +24,12 @@ func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
+	if parent.shooting:
+		if parent.shooting_up:
+			return fall_shootingup
+		else:
+			return jump_shooting
+	
 	if parent.velocity.y > 0:
 		return fall_state
 	
@@ -32,8 +39,7 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = movement
 
 	
-	if parent.shooting:
-		return jump_shooting
+	
 		
 	if parent.is_on_floor():
 		if movement != 0:

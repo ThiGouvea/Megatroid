@@ -4,6 +4,7 @@ extends State
 @export var idle_state: State
 @export var move_state: State
 @export var fall_shooting: State
+@export var fall_shootingup: State
 
 func enter():
 	super()
@@ -23,7 +24,10 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if parent.shooting:
-		return fall_shooting
+		if parent.shooting_up:
+			return fall_shootingup
+		else:
+			return fall_shooting
 	
 	if parent.is_on_floor():
 		if movement != 0:
