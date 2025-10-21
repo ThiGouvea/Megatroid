@@ -7,6 +7,7 @@ extends State
 @export var slide_state: State
 @export var move_shooting: State
 @export var move_shootingup: State
+@export var move_shootingdown: State
 
 func enter() -> void:
 	super()
@@ -33,6 +34,8 @@ func process_physics(delta: float) -> State:
 	if parent.shooting:
 		if parent.shooting_up:
 			return move_shootingup
+		elif parent.shooting_down:
+			return move_shootingdown
 		else:
 			return move_shooting
 	

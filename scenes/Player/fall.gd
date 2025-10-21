@@ -5,11 +5,12 @@ extends State
 @export var move_state: State
 @export var fall_shooting: State
 @export var fall_shootingup: State
+@export var fall_shootingdown: State
 
 func enter():
 	super()
-	if parent.shooting:
-		parent.animations.play('falljumpshooting')
+	#if parent.shooting:
+		#parent.animations.play('falljumpshooting')
 
 func process_physics(delta: float) -> State:
 	
@@ -26,6 +27,8 @@ func process_physics(delta: float) -> State:
 	if parent.shooting:
 		if parent.shooting_up:
 			return fall_shootingup
+		elif parent.shooting_down:
+			return fall_shootingdown
 		else:
 			return fall_shooting
 	

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var distancia_maxima: int = 30
+var distancia_maxima: int = 40
 var damage_shot: int = 1
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -16,24 +16,27 @@ func setup(_fliped: bool, _up: bool, _down: bool) -> void:
 	up = _up
 	down = _down
 	if up:
-		position.y -= 10
+		position.y -= 8
 		if fliped:
+			position.x -= 4
 			rotate(40)
 		else:
+			position.x += 4
 			rotate(-40)
 	elif down:
 		position.y += 10
 		if fliped:
+			position.x -= 4
 			rotate(-40)
 		else:
+			position.x += 4
 			rotate(40)
-	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if fliped and up:
-		position.x += velocidade * delta * 0.6
-		position.y -= velocidade * delta * 0.6
+		position.x += velocidade * delta * 0.69
+		position.y -= velocidade * delta * 0.69
 		travel_distance += 1
 	elif fliped and down:
 		position.x += velocidade * delta * 0.69

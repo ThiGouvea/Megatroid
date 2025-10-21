@@ -5,6 +5,7 @@ class_name idle extends State
 @export var move_state: State
 @export var idleshooting_state: State
 @export var idleshootingup_state: State
+@export var idleshootingdown_state: State
 
 
 func enter() -> void:
@@ -22,6 +23,8 @@ func process_physics(delta: float) -> State:
 	if parent.shooting:
 		if parent.shooting_up:
 			return idleshootingup_state
+		elif parent.shooting_down:
+			return idleshootingdown_state
 		else:
 			return idleshooting_state
 		
