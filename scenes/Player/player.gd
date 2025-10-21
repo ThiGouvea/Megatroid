@@ -10,12 +10,10 @@ extends CharacterBody2D
 @onready var state_machine = $state_machine
 @onready var timer: Timer = $Timer
 
-
 var shooting: bool = false
 var shooting_up: bool = false
 var shooting_down: bool = false
 var vulneravel = true
-
 
 signal taken_damage
 signal shoted(pos, fliped, up, down)

@@ -9,11 +9,8 @@ extends State
 
 func enter():
 	super()
-	#if parent.shooting:
-		#parent.animations.play('falljumpshooting')
 
 func process_physics(delta: float) -> State:
-	
 	
 	parent.velocity.y += gravity * delta
 
