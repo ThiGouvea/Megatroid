@@ -31,7 +31,7 @@ func setup(_fliped: bool, _up: bool, _down: bool) -> void:
 		else:
 			position.x += 4
 			rotate(40)
-	
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if fliped and up:
@@ -65,7 +65,6 @@ func _on_hit() -> int:
 
 func _on_body_entered(_body: Node) -> void:
 	queue_free()
-
 
 func _on_body_shape_entered(_body_rid: RID, _body: Node, _body_shape_index: int, _local_shape_index: int) -> void:
 	queue_free()

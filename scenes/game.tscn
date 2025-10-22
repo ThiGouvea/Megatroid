@@ -252,6 +252,11 @@ velocidade_movimento = 5
 hp_enemy = 5
 damage_to_player = 2
 
+[node name="BasicEnemy3" parent="levels/level1/Enemies" instance=ExtResource("9_0tnpc")]
+position = Vector2(-344, -65)
+rotation = 3.1415925
+velocidade_movimento = -20
+
 [node name="BasicEnemy2" parent="levels/level1/Enemies" instance=ExtResource("9_0tnpc")]
 position = Vector2(-312, 176)
 velocidade_movimento = 0

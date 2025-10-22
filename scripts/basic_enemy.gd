@@ -53,7 +53,7 @@ func _exit_state() -> void:
 			
 func _update_state(delta: float) -> void:
 	match current_state:
-		STATE.WALKING: 
+		STATE.WALKING:
 			if ray_cast_right.is_colliding() or !ray_cast_down_right.is_colliding():
 				direction = -1
 				animated_sprite.flip_h = true

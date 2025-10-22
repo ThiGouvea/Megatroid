@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var can_slide: bool = false
 @export var energy: int
 @export var can_shoot: bool = true
+@export var can_move: bool = true
 
 @onready var animations = $animations
 @onready var state_machine = $state_machine

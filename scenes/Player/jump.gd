@@ -46,5 +46,4 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 		
-	
 	return null
