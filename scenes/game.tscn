@@ -179,7 +179,6 @@ script = ExtResource("1_yqjtg")
 [node name="level1" type="Node" parent="levels"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="levels/level1"]
-visible = false
 color = Color(0.4390491, 0.43904912, 0.43904912, 1)
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="levels/level1"]
