@@ -87,7 +87,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walking",
-"speed": 3.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md22f"]
@@ -121,10 +121,10 @@ target_position = Vector2(-23.6507, 0.180182)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
 position = Vector2(0, -5.63005)
-target_position = Vector2(19.1883, 10.9717)
+target_position = Vector2(29, 14.630051)
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -5.63005)
-target_position = Vector2(-20.3806, 11.9528)
+target_position = Vector2(-28, 13.630051)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

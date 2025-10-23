@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dpx03g1xtlg1q"]
+[gd_scene load_steps=72 format=3 uid="uid://dpx03g1xtlg1q"]
 
 [ext_resource type="Script" uid="uid://drrtlrljculsc" path="res://scenes/Player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4k4wftf1saop" path="res://assets/sprites/damaged.png" id="2_jxtnq"]
@@ -35,6 +35,17 @@
 [ext_resource type="Script" uid="uid://63ksgvflv8s3" path="res://scenes/Player/moveshootingdown.gd" id="25_fqhit"]
 [ext_resource type="Script" uid="uid://ddeckw4m3opqu" path="res://scenes/Player/fallshootingup.gd" id="25_jn0uf"]
 [ext_resource type="Script" uid="uid://buc77t4x50w05" path="res://scenes/Player/fallshootingdown.gd" id="31_fqhit"]
+
+[sub_resource type="Gradient" id="Gradient_fqhit"]
+interpolation_mode = 2
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.6376812)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e8txv"]
+gradient = SubResource("Gradient_fqhit")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6q27"]
 atlas = ExtResource("2_jxtnq")
@@ -356,6 +367,13 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 HP = 10
 can_slide = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(0, -9)
+blend_mode = 2
+texture = SubResource("GradientTexture2D_e8txv")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 light_mask = 7

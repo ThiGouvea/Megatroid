@@ -1,5 +1,4 @@
-class_name Player
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var HP: int
 @export var can_slide: bool = false

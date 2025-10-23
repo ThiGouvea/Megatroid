@@ -65,6 +65,8 @@ func _on_hit() -> int:
 
 func _on_body_entered(_body: Node) -> void:
 	queue_free()
+	print('colided1')
 
 func _on_body_shape_entered(_body_rid: RID, _body: Node, _body_shape_index: int, _local_shape_index: int) -> void:
 	queue_free()
+	print('colided2')

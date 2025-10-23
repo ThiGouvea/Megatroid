@@ -58,6 +58,7 @@ shape = SubResource("CapsuleShape2D_i64fm")
 color = Color(0, 1, 1, 1)
 energy = 0.5
 range_item_cull_mask = 3
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_11l1o")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
