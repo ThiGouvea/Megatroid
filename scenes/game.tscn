@@ -313,6 +313,12 @@ collision_mask = 3
 position = Vector2(0, -48)
 shape = SubResource("WorldBoundaryShape2D_0tnpc")
 
+[node name="Light2" parent="levels/level1" instance=ExtResource("10_kvpfn")]
+light_mask = 6
+position = Vector2(-168, 31)
+rotation = -1.5707964
+color = Color(0.735357, 0.735357, 0.735357, 1)
+
 [node name="Platform" type="Node" parent="levels/level1"]
 
 [node name="Platform" parent="levels/level1/Platform" instance=ExtResource("4_iywne")]
@@ -369,18 +375,11 @@ damage_to_player = 26
 [node name="GreenEnemy4" parent="levels/level1/Enemies" instance=ExtResource("10_vtaks")]
 position = Vector2(-152, 176)
 
-[node name="Light3" parent="levels/level1" instance=ExtResource("10_kvpfn")]
-position = Vector2(-191, 86)
-
-[node name="Light2" parent="levels/level1" instance=ExtResource("10_kvpfn")]
-position = Vector2(-176, 86)
-rotation = -3.1415925
-
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_80nbo")]
 z_index = 5
-position = Vector2(-230, 165)
+position = Vector2(-84, 172)
 
 [node name="shots" type="Node" parent="."]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkujjmh8dug8e" path="res://assets/sprites/lampadamega.png" id="2_2e2gu"]
 
 [sub_resource type="Gradient" id="Gradient_2e2gu"]
-offsets = PackedFloat32Array(0.11594203, 0.6956522)
+offsets = PackedFloat32Array(0.17391305, 0.7246377)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ky1i4"]
@@ -17,21 +17,25 @@ polygon = PackedVector2Array(-4, -6, -4, 6, -2, 7, 0, 8, 0, -8, -2, -7)
 
 [node name="Light" type="Node2D"]
 script = ExtResource("1_2e2gu")
+color = Color(1, 0, 1, 1)
 
 [node name="Options" type="Node2D" parent="."]
 
 [node name="0" type="Node2D" parent="Options"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Options/0"]
-light_mask = 7
-visibility_layer = 7
+visibility_layer = 4
 position = Vector2(-8, 0)
 texture = ExtResource("2_2e2gu")
 
 [node name="PointLight2D" type="PointLight2D" parent="Options/0"]
+visibility_layer = 7
 position = Vector2(-6.0000114, 0)
-scale = Vector2(3.0000002, 2.78125)
+scale = Vector2(4.46875, 3.9687498)
+color = Color(1, 0, 1, 1)
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 4.0
 texture = SubResource("GradientTexture2D_ky1i4")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Options/0"]
