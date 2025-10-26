@@ -17,7 +17,6 @@ polygon = PackedVector2Array(-4, -6, -4, 6, -2, 7, 0, 8, 0, -8, -2, -7)
 
 [node name="Light" type="Node2D"]
 script = ExtResource("1_2e2gu")
-color = Color(1, 0, 1, 1)
 
 [node name="Options" type="Node2D" parent="."]
 
@@ -33,6 +32,7 @@ visibility_layer = 7
 position = Vector2(-6.0000114, 0)
 scale = Vector2(4.46875, 3.9687498)
 color = Color(1, 0, 1, 1)
+energy = 0.82769156
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 4.0
