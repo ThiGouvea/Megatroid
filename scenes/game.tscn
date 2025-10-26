@@ -315,7 +315,7 @@ light_mask = 6
 position = Vector2(-168, 31)
 rotation = -1.5707964
 color = Color(1, 0.21720988, 0.21720988, 1)
-strength = 1.7530000000000001
+strength = 1.753
 radius = 1.207
 flicker = 200.0
 
@@ -323,7 +323,8 @@ flicker = 200.0
 light_mask = 6
 position = Vector2(-240, 32)
 rotation = -1.5707964
-strength = 0.361
+color = Color(0.9684175, 0.00017911193, 0.00017911193, 1)
+strength = 0.85
 radius = 1.001
 flicker = 200.0
 
@@ -402,7 +403,7 @@ position = Vector2(-152, 176)
 
 [node name="Player" parent="Player" instance=ExtResource("1_80nbo")]
 z_index = 5
-position = Vector2(20, 170)
+position = Vector2(-205, 71)
 
 [node name="shots" type="Node" parent="."]
 

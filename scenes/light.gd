@@ -13,10 +13,10 @@ extends Node2D
 		if get_child_count() > 0 and value != null:
 			color = value
 			$Options.get_child(int(type)).get_child(1).color = value
-@export_range(0, 5) var strength: float = 1.0:
-	set(value):
-		if get_child_count() > 0 and value != null:
-			strength = value
+@export_range(0, 5) var strength: float = 1.0
+	#set(value):
+		#if get_child_count() > 0 and value != null:
+			#strength = value
 			#$Options.get_child(int(type)).get_child(1).energy = value
 @export_range(0, 20) var radius: float = 1.0:
 	set(value):
