@@ -33,6 +33,10 @@ visibility_layer = 7
 position = Vector2(-6.0000114, 0)
 scale = Vector2(4.46875, 3.9687498)
 color = Color(1, 0, 1, 1)
+<<<<<<< HEAD
+=======
+energy = 0.6126962
+>>>>>>> 2adb160 (refatorando codigo)
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 4.0
