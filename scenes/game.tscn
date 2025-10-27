@@ -324,7 +324,7 @@ light_mask = 6
 position = Vector2(-240, 32)
 rotation = -1.5707964
 color = Color(0.9684175, 0.00017911193, 0.00017911193, 1)
-strength = 0.85
+strength = 0.364
 radius = 1.001
 flicker = 200.0
 
